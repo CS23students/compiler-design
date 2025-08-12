@@ -1,0 +1,48 @@
+// filename - > arith_expr.y
+%{
+#include <stdio.h>
+#include <stdlib.h>
+%}
+
+%token NUM
+
+%%
+expr: expr '+' expr   { printf("Valid Expression\n"); }
+    | expr '-' expr   { printf("Valid Expression\n"); }
+    | expr '*' expr   { printf("Valid Expression\n"); }
+    | expr '/' expr   { printf("Valid Expression\n"); }
+    | '(' expr ')'
+    | NUM
+    ;
+%%
+
+int main() {
+    printf("Enter an arithmetic expression: ");
+    yyparse();
+    return 0;
+}
+
+int yyerror(char *s) {
+    printf("Invalid Expression\n");
+    exit(0);
+}
+
+
+// filename - > arith_expr.l
+%{
+#include "y.tab.h"
+%}
+
+%%
+[0-9]+     { yylval = atoi(yytext); return NUM; }
+[\+\-\*/\(\)]   { return yytext[0]; }
+[ \t\n]    ; // ignore whitespace
+.          { return 0; }
+%%
+
+int yywrap() { return 1; }
+
+
+Input: (5+3)*2
+Output: Valid Expression
+
