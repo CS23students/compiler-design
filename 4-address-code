@@ -1,0 +1,87 @@
+lex.l
+%{
+#include "y.tab.h"
+%}
+
+%%
+[a-zA-Z][a-zA-Z0-9]* { yylval = strdup(yytext); return ID; }
+[0-9]+               { yylval = strdup(yytext); return NUM; }
+[\+\-\*/]            { return yytext[0]; }
+[ \t\n]              { /* ignore */ }
+.                    { return yytext[0]; }
+%%
+
+int yywrap() { return 1; }
+
+
+yacc.y
+%{
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int tempCount = 0;
+
+char* newTemp() {
+    char *temp = (char*)malloc(5);
+    sprintf(temp, "t%d", tempCount++);
+    return temp;
+}
+%}
+
+%union { char* str; }
+%token <str> ID NUM
+%type <str> expr
+
+%left '+' '-'
+%left '*' '/'
+
+%%
+
+stmt: expr { printf("Result in %s\n", $1); }
+;
+
+expr: expr '+' expr { 
+          char* t = newTemp();
+          printf("%s = %s + %s\n", t, $1, $3);
+          $$ = t;
+      }
+    | expr '-' expr {
+          char* t = newTemp();
+          printf("%s = %s - %s\n", t, $1, $3);
+          $$ = t;
+      }
+    | expr '*' expr {
+          char* t = newTemp();
+          printf("%s = %s * %s\n", t, $1, $3);
+          $$ = t;
+      }
+    | expr '/' expr {
+          char* t = newTemp();
+          printf("%s = %s / %s\n", t, $1, $3);
+          $$ = t;
+      }
+    | ID   { $$ = $1; }
+    | NUM  { $$ = $1; }
+;
+
+%%
+
+int main() {
+    printf("Enter an expression: ");
+    yyparse();
+    return 0;
+}
+
+int yyerror(char *s) {
+    printf("Error: %s\n", s);
+    return 0;
+}
+
+
+Execution Steps
+lex lex.l
+yacc -d yacc.y
+cc lex.yy.c y.tab.c -o tac
+./tac
+
