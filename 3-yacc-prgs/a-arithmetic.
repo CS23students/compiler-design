@@ -46,3 +46,8 @@ int yywrap() { return 1; }
 Input: (5+3)*2
 Output: Valid Expression
 
+📌 Compilation & Execution Steps (for any of the above):
+yacc -d filename.y
+lex filename.l
+gcc y.tab.c lex.yy.c -o output
+./output
