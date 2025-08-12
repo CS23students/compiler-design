@@ -1,0 +1,46 @@
+//filename -> variable.y
+
+%{
+#include <stdio.h>
+#include <stdlib.h>
+%}
+
+%token LETTER DIGIT
+
+%%
+variable: LETTER rest { printf("Valid Variable\n"); }
+rest: LETTER rest
+    | DIGIT rest
+    | /* empty */
+    ;
+%%
+
+int main() {
+    printf("Enter a variable name: ");
+    yyparse();
+    return 0;
+}
+
+int yyerror(char *s) {
+    printf("Invalid Variable\n");
+    exit(0);
+}
+
+//filename - > LEX (variable.l)
+%{
+#include "y.tab.h"
+%}
+
+%%
+[a-zA-Z]    { return LETTER; }
+[0-9]       { return DIGIT; }
+\n          { return 0; }
+.           { return 0; }
+%%
+
+int yywrap() { return 1; }
+
+
+Input: myVar123
+Output: Valid Variable
+
