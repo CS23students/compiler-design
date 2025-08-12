@@ -1,0 +1,87 @@
+YACC (control_struct.y)
+
+%{
+#include <stdio.h>
+#include <stdlib.h>
+%}
+
+%token IF ELSE WHILE FOR SWITCH CASE DEFAULT ID NUM RELOP
+
+%%
+stmt: ifstmt
+    | whilestmt
+    | forstmt
+    | switchstmt
+    ;
+
+ifstmt: IF '(' cond ')' stmt
+      | IF '(' cond ')' stmt ELSE stmt
+      ;
+
+whilestmt: WHILE '(' cond ')' stmt
+         ;
+
+forstmt: FOR '(' assign ';' cond ';' assign ')' stmt
+       ;
+
+switchstmt: SWITCH '(' ID ')' '{' cases '}'
+          ;
+
+cases: CASE NUM ':' stmt cases
+     | DEFAULT ':' stmt
+     ;
+
+cond: ID RELOP ID
+    | ID RELOP NUM
+    ;
+
+assign: ID '=' NUM
+      | ID '=' ID
+      ;
+%%
+
+int main() {
+    printf("Enter a control structure: ");
+    yyparse();
+    return 0;
+}
+
+int yyerror(char *s) {
+    printf("Invalid Syntax\n");
+    exit(0);
+}
+
+
+LEX (control_struct.l)
+%{
+#include "y.tab.h"
+%}
+
+%%
+"if"        { return IF; }
+"else"      { return ELSE; }
+"while"     { return WHILE; }
+"for"       { return FOR; }
+"switch"    { return SWITCH; }
+"case"      { return CASE; }
+"default"   { return DEFAULT; }
+[a-zA-Z][a-zA-Z0-9]* { return ID; }
+[0-9]+      { return NUM; }
+"=="|"<"|">"|"<="|">="|"!=" { return RELOP; }
+"="         { return '='; }
+";"         { return ';'; }
+":"         { return ':'; }
+"{"         { return '{'; }
+"}"         { return '}'; }
+"("         { return '('; }
+")"         { return ')'; }
+[ \t\n]     ;
+.           { return 0; }
+%%
+
+int yywrap() { return 1; }
+
+
+
+Input: if(a>5) a=10;
+Output: Valid Syntax
