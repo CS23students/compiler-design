@@ -32,3 +32,4 @@ int yywrap(){
 //vowels
 
 //Number of vowels: 2
+//Number of consonants: 4
