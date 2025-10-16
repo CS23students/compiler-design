@@ -33,6 +33,10 @@
 
 [Develop a C program to eliminate left recursion from the given grammar.](./03/)
 
+## 04. Abstract Syntax Tree (AST) for Arithmetic Expressions using C
+
+[Develop a C program that generates Abstract Syntax Trees (AST) from a given arithmetic expression.](./04/)
+
 ## 06. Lexical analysis for identifiers, constants
 
 [Develop a C program to design a lexical analyzer that recognizes identifiers and constants.](./06/)
@@ -45,13 +49,17 @@
 
 [Use Lex tool to recognize a valid arithmetic expression with operators +, -, \*, /.](./09/)
 
-## 10. Valid Variable Name using LEX
+## 10. Valid Variable Name using YACC
 
-[Design a program using Lex tool to validate a variable name starting with an alphabet followed by any number of digits or alphabets.](./10/)
+[10. Design a pgm to recognize a valid variable that starts with an alphabet followed by any no. of digits alphabets using yacc tool.](./10/)
 
 ## 11. Generate Machine Code from Intermediate Code using C
 
 [Develop a C program to generate machine code from a given intermediate code.](./11/)
+
+## 12. beginning with an uppercase letter followed by 5 digits or alphabets - using YACC
+
+[Generate a valid pattern that recognises all stmts that begins with an uppercase letter followed by five digits or alphabet use yacc tool to do the same.](./12/)
 
 ## 13. Identify Commands, Arithmetic operators and keywords using LEX
 
@@ -60,6 +68,18 @@
 ## 14. Generate Machine Code from Postfix Expression using C
 
 [Develop a C program to generate machine code from a given postfix notation.](./14/)
+
+## 15. lex program to scan variables, reserved words and operators of clang
+
+[Write a lex program to scan variables, reserved words and operators of C-language](./15/)
+
+## 17. Native calculator using LEX and YACC
+
+[Use lex and yacc tool to implement a native calc.](./17/)
+
+## 18. Generate Three Address Code for Arithmetic Expressions using C
+
+[18. Design a program to generate 3-add code from given arith exp](./18/)
 
 ## 19. Type checker in variable scope and semantic error detection using C
 
