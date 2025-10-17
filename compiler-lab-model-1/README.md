@@ -25,6 +25,10 @@
    ./output-filename.exe
    ```
 
+## 01. recognise a valid control structure syntax of c lang - for loop, while, if...else if...else if, switch, do...while.
+
+[Develop a program to recognise a valid control structure syntax of c lang - for loop, while, if...else if...else if, switch, do...while.](./01/)
+
 ## 02. Count Vowels and Consonants using LEX
 
 [Develop a Lex program to count the total number of vowels and consonants in the given input.](./02/)
@@ -37,9 +41,17 @@
 
 [Develop a C program that generates Abstract Syntax Trees (AST) from a given arithmetic expression.](./04/)
 
+## 05. Top Down Parser with no backtracking using C - only for specific input (already defined in code)
+
+[Design a top down parser which generates a parsing table with no backtracking](./05/)
+
 ## 06. Lexical analysis for identifiers, constants
 
 [Develop a C program to design a lexical analyzer that recognizes identifiers and constants.](./06/)
+
+## 07. Symbol Table Management using C
+
+[Implement a symbol table that involves insertion, deletion, search and modify operation using C language](./07/)
 
 ## 08. Lexical analyzer for to separate tokens using LEX
 
@@ -72,6 +84,10 @@
 ## 15. lex program to scan variables, reserved words and operators of clang
 
 [Write a lex program to scan variables, reserved words and operators of C-language](./15/)
+
+## 16. Convert Three Address Code to Assembly Language using C
+
+[Develop a pgm in c that converts the given 3 add code into assembly lang stmts](./16/)
 
 ## 17. Native calculator using LEX and YACC
 
