@@ -9,6 +9,20 @@
    gcc lex.yy.c -o `output-filename`
    ./output-filename.exe
    ```
+   
+- if only lex file exists
+ ```
+   win_flex filename.l
+   gcc lex.yy.c -o filename.exe
+   filename.exe
+```
+- if both yaac and lex file exist
+```
+   win_bison -d filename.y
+   win_flex filename.l
+   gcc filename.tab.c lex.yy.c -o filename.exe
+   filename.exe
+```
 
 2. To compile a Yacc/Bison program:
    For Windows, you can use GnuWin32 tools. Make sure to install them and add to your PATH.
@@ -104,3 +118,4 @@
 ## 20. Code Optimization using C
 
 [20. Develop a code optimization program to optimize the given intermediate code using standard optimization techniques.](./20/)
+
